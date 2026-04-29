@@ -281,6 +281,22 @@
 
     // 自動觸發 view_product 事件 (滾動監測)
     document.addEventListener('DOMContentLoaded', function() {
+        // 使用事件委托确保动态按钮也能被捕获
+document.getElementById('productsGrid').addEventListener('click', function(e) {
+    const btn = e.target.closest('.detail-btn');
+    if (btn && btn.hasAttribute('onclick')) {
+        // 如果已经有 onclick 属性，就不重复处理（避免二次触发）
+        return;
+    }
+    if (btn) {
+        const card = btn.closest('.product-card');
+        const productName = card.getAttribute('data-product-name');
+        const product = products.find(p => p.name === productName);
+        if (product) {
+            viewDetail(product.id);
+        }
+    }
+});
         renderProducts();
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
