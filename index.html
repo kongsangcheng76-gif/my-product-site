@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>极客商城 - 智能手表</title>
-    <!-- GA4 全局标签（稍后填入 Measurement ID） -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>極客商城 | 智慧穿戴</title>
+    <!-- GA4 全域標籤 (保留原有 ID) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-65SJRPQ394"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,35 +12,280 @@
         gtag('js', new Date());
         gtag('config', 'G-65SJRPQ394');
     </script>
+    <!-- 引入 Google Fonts 提升字體美感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (免費圖示庫) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body { font-family: Arial; margin: 20px; }
-        .product { border: 1px solid #ccc; padding: 15px; margin: 10px 0; }
-        button { background: #28a745; color: white; padding: 8px 16px; border: none; cursor: pointer; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f5f7fc 0%, #eef2f8 100%);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            color: #1a2c3e;
+        }
+
+        /* 容器 – 響應式 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* 頁首區塊 (品牌 + 小標語) */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e293b, #2d3e5a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero h1 i {
+            background: none;
+            color: #f97316;
+            font-size: 2.4rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4a627a;
+            font-weight: 400;
+            border-top: 2px solid rgba(0,0,0,0.05);
+            display: inline-block;
+            padding-top: 0.8rem;
+        }
+
+        /* 商品網格 – 現代卡片式 */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 45px -12px rgba(0, 0, 0, 0.2);
+            background: white;
+            border-color: rgba(249, 115, 22, 0.2);
+        }
+
+        /* 商品圖片佔位 (擬物風格) */
+        .product-img {
+            background: linear-gradient(125deg, #f0f2f5, #e6e9f0);
+            padding: 2rem 1rem;
+            text-align: center;
+            font-size: 4rem;
+            color: #3b4e66;
+            border-bottom: 1px solid #eef2f8;
+        }
+
+        .product-info {
+            padding: 1.5rem 1.8rem 2rem;
+        }
+
+        .product-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-title span {
+            background: #eef2ff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            color: #2563eb;
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin: 0.75rem 0 1rem;
+            line-height: 1.4;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f97316;
+            margin: 1rem 0 1.2rem;
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+        }
+
+        .price small {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #5b6e8c;
+        }
+
+        /* 現代按鈕 */
+        .buy-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 0.9rem 1.5rem;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+            font-family: inherit;
+        }
+
+        .buy-btn i {
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+
+        .buy-btn:hover {
+            background: #f97316;
+            transform: scale(1.02);
+            box-shadow: 0 8px 18px rgba(249, 115, 22, 0.3);
+        }
+
+        .buy-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        /* 頁腳 (簡單留白) */
+        .footer-note {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #687a8f;
+            border-top: 1px solid #dce3ec;
+            padding-top: 2rem;
+        }
+
+        /* 響應式微調 */
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .product-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* 彈窗優化 (內建 alert 保留但樣式無法改，但可以在現代風格中保留原生感) */
     </style>
 </head>
 <body>
-    <h1>🔥 极客商城</h1>
-    <div class="product">
-        <h2>智能运动手表 Pro</h2>
-        <p>价格：$99</p>
-        <button onclick="buyNow('智能运动手表 Pro', 99)">立即购买</button>
-    </div>
-    <div class="product">
-        <h2>降噪无线耳机 X1</h2>
-        <p>价格：$59</p>
-        <button onclick="buyNow('降噪无线耳机 X1', 59)">立即购买</button>
+<div class="container">
+    <!-- 英雄區塊｜繁體字呈現 -->
+    <div class="hero">
+        <h1>
+            <i class="fas fa-bolt"></i> 
+            極客商城
+        </h1>
+        <p>⚡ 未來科技・即刻擁有</p>
     </div>
 
-    <script>
-        // 自定义事件：购买点击
-        function buyNow(productName, price) {
-            gtag('event', 'purchase_click', {
-                'product_name': productName,
-                'price': price,
-                'currency': 'USD'
-            });
-            alert('您点击了购买：' + productName + '\n（演示，不会真实扣款）');
-        }
-    </script>
+    <!-- 商品網格 -->
+    <div class="products-grid">
+        <!-- 智慧運動手錶 Pro -->
+        <div class="product-card">
+            <div class="product-img">
+                <i class="fas fa-clock"></i> ⌚️
+            </div>
+            <div class="product-info">
+                <div class="product-title">
+                    智慧運動手錶 Pro
+                    <span>新品</span>
+                </div>
+                <div class="product-desc">
+                    精準心率監測｜GPS 定位｜14 天續航｜全天活動追蹤
+                </div>
+                <div class="price">
+                    $99 <small>USD</small>
+                </div>
+                <button class="buy-btn" onclick="buyNow('智慧運動手錶 Pro', 99)">
+                    <i class="fas fa-cart-shopping"></i> 立即購買
+                </button>
+            </div>
+        </div>
+
+        <!-- 降噪無線耳機 X1 -->
+        <div class="product-card">
+            <div class="product-img">
+                <i class="fas fa-headphones"></i> 🎧
+            </div>
+            <div class="product-info">
+                <div class="product-title">
+                    降噪無線耳機 X1
+                    <span>熱銷</span>
+                </div>
+                <div class="product-desc">
+                    主動降噪｜Hi-Fi 音質｜30 小時播放｜通透模式
+                </div>
+                <div class="price">
+                    $59 <small>USD</small>
+                </div>
+                <button class="buy-btn" onclick="buyNow('降噪無線耳機 X1', 59)">
+                    <i class="fas fa-cart-shopping"></i> 立即購買
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-note">
+        <i class="fas fa-shield-alt"></i> 安全結帳 · 極速配送 · 繁體客戶服務
+    </div>
+</div>
+
+<script>
+    // 自定義事件：購買點擊 (保留 GA4 追蹤)
+    function buyNow(productName, price) {
+        gtag('event', 'purchase_click', {
+            'product_name': productName,
+            'price': price,
+            'currency': 'USD'
+        });
+        alert('✅ 您點擊了購買：' + productName + '\n💰 金額：US$' + price + '\n（此為示範，不會真實扣款）');
+    }
+</script>
 </body>
 </html>
