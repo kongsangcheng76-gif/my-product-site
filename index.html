@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>极客商城 - 智能手表</title>
+    <!-- GA4 全局标签（稍后填入 Measurement ID） -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .product { border: 1px solid #ccc; padding: 15px; margin: 10px 0; }
+        button { background: #28a745; color: white; padding: 8px 16px; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🔥 极客商城</h1>
+    <div class="product">
+        <h2>智能运动手表 Pro</h2>
+        <p>价格：$99</p>
+        <button onclick="buyNow('智能运动手表 Pro', 99)">立即购买</button>
+    </div>
+    <div class="product">
+        <h2>降噪无线耳机 X1</h2>
+        <p>价格：$59</p>
+        <button onclick="buyNow('降噪无线耳机 X1', 59)">立即购买</button>
+    </div>
+
+    <script>
+        // 自定义事件：购买点击
+        function buyNow(productName, price) {
+            gtag('event', 'purchase_click', {
+                'product_name': productName,
+                'price': price,
+                'currency': 'USD'
+            });
+            alert('您点击了购买：' + productName + '\n（演示，不会真实扣款）');
+        }
+    </script>
+</body>
+</html>
